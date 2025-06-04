@@ -2,7 +2,25 @@ public class Similarity {
     public int compare(String str1, String str2) {
         assertIllegalArgument(str1);
         assertIllegalArgument(str2);
-        return 60;
+
+        if (str1.length() < str2.length()) {
+            String tmp = str1;
+            str1 = str2;
+            str2 = tmp;
+        }
+
+        int ret = 0;
+        ret += compareLength(str1, str2);
+
+        return ret;
+    }
+
+    private int compareLength(String str1, String str2) {
+        if (str1.length() == str2.length()) return 60;
+        if (str1.length() >= str2.length() * 2) return 0;
+        double gap = str1.length() - str2.length();
+        int result = (int) ((1.0 - (gap) / str2.length()) * 60);
+        return result;
     }
 
     private void assertIllegalArgument(String str) {
@@ -19,7 +37,7 @@ public class Similarity {
     }
 
     private static void assertLengthLongerThan0(String str) {
-        if(str.length() == 0) throw new IllegalArgumentException();
+        if (str.length() == 0) throw new IllegalArgumentException();
     }
 
 }
