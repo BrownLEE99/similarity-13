@@ -16,4 +16,24 @@ class SimilarityTest {
     void notNullSimilarityObject() {
         assertNotNull(sm);
     }
+
+    @Test
+    void invalidInputNotString() {
+        assertThrows(IllegalArgumentException.class,()->{
+            sm.compare("123", "abc");
+        });
+        assertThrows(IllegalArgumentException.class,()->{
+            sm.compare("123", "ab1c");
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            sm.compare("123", "");
+        });
+    }
+
+    @Test
+    void sameLength() {
+        int ret = sm.compare("asd", "qwe");
+        assertEquals(60, ret);
+    }
+
 }
