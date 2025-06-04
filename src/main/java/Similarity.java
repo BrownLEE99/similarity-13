@@ -9,18 +9,14 @@ public class Similarity {
             str2 = tmp;
         }
 
-        int ret = 0;
-        ret += compareLength(str1, str2);
-
-        return ret;
+        return compareLength(str1, str2);
     }
 
     private int compareLength(String str1, String str2) {
         if (str1.length() == str2.length()) return 60;
         if (str1.length() >= str2.length() * 2) return 0;
         double gap = str1.length() - str2.length();
-        int result = (int) ((1.0 - (gap) / str2.length()) * 60);
-        return result;
+        return (int) ((1.0 - (gap) / str2.length()) * 60);
     }
 
     private void assertIllegalArgument(String str) {
